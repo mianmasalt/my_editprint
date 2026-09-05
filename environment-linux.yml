@@ -1,0 +1,46 @@
+name: editprint
+
+# Linux server environment cleaned from a Windows `conda env export` snapshot.
+# PyTorch 1.9 is kept for compatibility with the original project.
+channels:
+  - pytorch
+  - conda-forge
+
+dependencies:
+  - python=3.9
+  - pip
+
+  # Install the mutually compatible legacy PyTorch/CUDA set through Conda.
+  # The server's NVIDIA driver may support a newer CUDA version; that is fine.
+  - pytorch=1.9.0
+  - torchvision=0.10.0
+  - torchaudio=0.9.0
+  - cudatoolkit=11.1
+
+  # Top-level scientific dependencies. Conda resolves Linux system libraries.
+  - numpy=1.21.6
+  - scipy=1.9.3
+  - scikit-learn=1.2.1
+  - scikit-image=0.19.3
+  - pillow=9.5.0
+  - pywavelets=1.4.1
+  - imageio=2.37.2
+  - joblib=1.5.3
+  - networkx=3.2.1
+  - tqdm
+  - pyyaml
+
+  - pip:
+      - albumentations==1.3.1
+      - colorama==0.4.6
+      - ftfy==6.3.1
+      - opencv-python==4.5.4.60
+      - qudida==0.0.4
+      - rawpy==0.18.1
+      - regex
+      - tifffile==2024.8.30
+      - wcwidth
+
+      # If the project imports OpenAI CLIP, install this source package.
+      # This replaces the ambiguous PyPI package `clip==1.0` in the original.
+      - git+https://github.com/openai/CLIP.git
